@@ -1,0 +1,20 @@
+#!/usr/bin/expect -f
+set timeout 120
+spawn bunx oh-my-agent@latest install
+
+# Wait for the first prompt which ends with '?'
+expect "?"
+sleep 1
+send "\r"
+
+# Wait for the second prompt
+expect "?"
+sleep 1
+send "\r"
+
+# Wait for possible overwrite or Proceed
+expect "?"
+sleep 1
+send "y\r"
+
+expect eof

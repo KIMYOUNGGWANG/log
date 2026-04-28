@@ -1,0 +1,17 @@
+#!/usr/bin/expect -f
+set timeout 120
+spawn bunx oh-my-agent@latest install
+
+expect -ex "?"
+sleep 1
+send "\r"
+
+expect -ex "?"
+sleep 1
+send "\r"
+
+expect -ex "?"
+sleep 1
+send "y\r"
+
+expect eof

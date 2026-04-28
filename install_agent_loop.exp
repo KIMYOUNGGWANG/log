@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+set timeout 120
+spawn npx oh-my-agent install
+
+expect {
+    "?" {
+        sleep 2
+        send "\r"
+        exp_continue
+    }
+    eof {
+        exit 0
+    }
+}

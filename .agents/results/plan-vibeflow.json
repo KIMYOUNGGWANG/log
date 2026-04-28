@@ -1,0 +1,38 @@
+{
+  "projectId": "vibeflow",
+  "planName": "VibeFlow MVP",
+  "status": "approved",
+  "phases": [
+    {
+      "name": "Phase 1: Project Setup",
+      "tasks": [
+        { "id": "T1.1", "title": "Expo & Firebase Initial Setup", "assigned": ["backend", "frontend"], "priority": "P0" },
+        { "id": "T1.2", "title": "Base UI Components & Design Token Setup", "assigned": ["frontend"], "priority": "P0" }
+      ]
+    },
+    {
+      "name": "Phase 2: Auth & Group Mechanics",
+      "tasks": [
+        { "id": "T2.1", "title": "Social Login Integration", "assigned": ["frontend", "backend"], "priority": "P0" },
+        { "id": "T2.2", "title": "Invite Code System & Group Creation", "assigned": ["backend"], "priority": "P0" },
+        { "id": "T2.3", "title": "Invite Screen & Group Dashboard UI", "assigned": ["frontend"], "priority": "P0" }
+      ]
+    },
+    {
+      "name": "Phase 3: AI Hormone Check-in",
+      "tasks": [
+        { "id": "T3.1", "title": "Daily Check-in Swipe UI", "assigned": ["frontend"], "priority": "P1" },
+        { "id": "T3.2", "title": "Gemini API Hormone Analysis", "assigned": ["backend"], "priority": "P1" },
+        { "id": "T3.3", "title": "Hormone Prescription Result Screen", "assigned": ["frontend"], "priority": "P1" }
+      ]
+    },
+    {
+      "name": "Phase 4: Mission Sending & Tracking",
+      "tasks": [
+        { "id": "T4.1", "title": "Send Mission & Push Notification", "assigned": ["backend"], "priority": "P1" },
+        { "id": "T4.2", "title": "Mission Inbox & Photo Upload UI", "assigned": ["frontend"], "priority": "P1" },
+        { "id": "T4.3", "title": "Hormone Calendar UI", "assigned": ["frontend"], "priority": "P1" }
+      ]
+    }
+  ]
+}

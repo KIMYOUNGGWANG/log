@@ -1,0 +1,18 @@
+#!/usr/bin/expect -f
+set timeout 60
+spawn bunx oh-my-agent@latest install
+
+# 1. Wait for "Response language?"
+sleep 5
+send "\r"
+
+# 2. Wait for "Select preset"
+sleep 3
+send "\r"
+
+# 3. Proceed?
+sleep 3
+send "\r"
+
+# Wait for it to complete
+expect eof

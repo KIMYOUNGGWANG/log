@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native builds
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+ios/
+android/
+
+# Environment & secrets — NEVER commit real keys
+.env
+.env.local
+.env*.local
+*.pem
+google-services.json
+GoogleService-Info.plist
+
+# Firebase emulator
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# macOS
+.DS_Store
+
+# Logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.tsbuildinfo
+
+# Build artifacts
+vibeflow/functions/lib/
+vibeflow/functions/node_modules/
