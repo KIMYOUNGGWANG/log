@@ -1,0 +1,32 @@
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "agent": "backend",
+      "title": "DB Schema for Scenario Packs",
+      "description": "Create scenario_packs and user_purchases tables in Supabase.",
+      "priority": "P0"
+    },
+    {
+      "id": "T2",
+      "agent": "backend",
+      "title": "Stripe Checkout for Packs",
+      "description": "Create /api/checkout-pack endpoint for one-time payment (mode: 'payment') with packId metadata.",
+      "priority": "P0"
+    },
+    {
+      "id": "T3",
+      "agent": "backend",
+      "title": "Payment Webhook Update",
+      "description": "Update /api/payment to handle one-time checkout.session.completed and insert into user_purchases.",
+      "priority": "P0"
+    },
+    {
+      "id": "T4",
+      "agent": "frontend",
+      "title": "Scenario Packs UI",
+      "description": "Update /scenarios page to display available packs, check purchase status, and provide purchase buttons.",
+      "priority": "P1"
+    }
+  ]
+}

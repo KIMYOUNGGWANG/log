@@ -1,0 +1,12 @@
+{
+  "triggers": {
+    "brainstorm": {
+      "lastTriggeredAt": "2026-05-03T16:15:39.213Z",
+      "count": 1
+    },
+    "plan": {
+      "lastTriggeredAt": "2026-05-03T16:13:29.137Z",
+      "count": 1
+    }
+  }
+}

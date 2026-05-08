@@ -1,0 +1,42 @@
+{
+  "session": "phase3-global-challenge",
+  "tasks": [
+    {
+      "id": "T1",
+      "agent": "pm",
+      "title": "i18n Next.js 라우팅 세팅",
+      "description": "다국어 지원을 위해 next-intl 설치 및 미들웨어 설정. app 라우터를 [locale] 하위로 이전.",
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "T2",
+      "agent": "backend",
+      "title": "DB 스키마: Group Challenges",
+      "description": "group_challenges (초대장, 상태), group_challenge_participants (유저 진행도) 테이블 생성.",
+      "priority": "P1",
+      "dependencies": []
+    },
+    {
+      "id": "T3",
+      "agent": "backend",
+      "title": "시나리오 번역 데이터 확장",
+      "description": "scenarios 테이블에 language 컬럼을 추가하거나, scenario_translations 테이블로 분리.",
+      "priority": "P1",
+      "dependencies": []
+    },
+    {
+      "id": "T4",
+      "agent": "frontend",
+      "title": "그룹 챌린지 UI 및 상담 예약 모달",
+      "description": "그룹 챌린지 초대 링크 생성 버튼, 상담사 매칭 예약 폼 UI.",
+      "priority": "P2",
+      "dependencies": ["T2"]
+    }
+  ],
+  "assumptions": [
+    "next-intl will be used for App Router i18n",
+    "Japanese specific scenarios might need separate IDs or a language column in DB"
+  ],
+  "over_engineering_review": "App Router folder restructuring ([locale]) is a major structural change. It might break existing routes. We must proceed carefully and test thoroughly."
+}

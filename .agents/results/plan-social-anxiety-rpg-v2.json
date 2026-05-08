@@ -1,0 +1,175 @@
+{
+  "sessionId": "social-anxiety-rpg-v2",
+  "createdAt": "2026-05-08T09:55:00Z",
+  "projectPath": "social-anxiety-rpg",
+  "designDoc": "docs/plans/social-anxiety-rpg-v2-design.md",
+  "approach": "incremental-refactor",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Supabase 데이터 모델 마이그레이션",
+      "agent": "backend",
+      "priority": "P0",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "scenarios 테이블에 locale, npc_name, npc_personality, opening_line, max_turns, order_index 컬럼 추가",
+        "sessions 테이블 생성 (anxiety_before/after 0~21, mode, status)",
+        "messages 테이블 생성 (session_id, role, content, turn_number)",
+        "user_memories 테이블 생성 (memory_type, content, source_session_id)",
+        "gad7_scores 테이블 생성 (score_type, total_score, answers JSONB)",
+        "users 테이블에 locale, current_level 컬럼 추가",
+        "subscriptions 테이블에 currency 컬럼 추가",
+        "RLS 정책 설정 완료"
+      ]
+    },
+    {
+      "id": "T2",
+      "title": "시나리오 시드 데이터 (KO 25 + EN 25)",
+      "agent": "backend",
+      "priority": "P0",
+      "dependencies": ["T1"],
+      "acceptanceCriteria": [
+        "한국어 시나리오 25개 INSERT (5 카테고리 × 5레벨)",
+        "영어 시나리오 25개 INSERT (5 카테고리 × 5레벨)",
+        "각 시나리오에 npc_name, npc_personality, opening_line 포함",
+        "KO 5개 + EN 5개 = 10개 is_free: true",
+        "order_index 설정"
+      ]
+    },
+    {
+      "id": "T3",
+      "title": "i18n 구조 구축 (next-intl)",
+      "agent": "frontend",
+      "priority": "P0",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "app/[locale]/ 동적 세그먼트 라우팅",
+        "messages/ko.json, messages/en.json 번역 파일",
+        "미들웨어 locale 감지 (Accept-Language)",
+        "layout.tsx에서 locale 기반 html lang 설정",
+        "모든 UI 텍스트 useTranslations() 사용"
+      ]
+    },
+    {
+      "id": "T4",
+      "title": "GAD-7 Quick Check 컴포넌트",
+      "agent": "frontend",
+      "priority": "P0",
+      "dependencies": ["T3"],
+      "acceptanceCriteria": [
+        "3문항 빠른 체크 UI (0~3 라디오/슬라이더 × 3문항)",
+        "21점 환산 로직 (score * 21 / 9)",
+        "세션 시작 전/후 각각 표시",
+        "gad7_scores 테이블 저장 (score_type: quick)",
+        "한국어/영어 문항 텍스트 i18n 적용",
+        "Full GAD-7 (7문항) 대시보드 주간 팝업"
+      ]
+    },
+    {
+      "id": "T5",
+      "title": "세션 메모리 AI 시스템",
+      "agent": "backend",
+      "priority": "P0",
+      "dependencies": ["T1"],
+      "acceptanceCriteria": [
+        "세션 종료 시 GPT-4o로 대화 패턴 분석 → user_memories 저장",
+        "세션 시작 시 최근 5개 메모리 조회 → 시스템 프롬프트 주입",
+        "user_memories 최대 20개 유지 (FIFO 정리)",
+        "memory_type 분류: pattern, insight, preference"
+      ]
+    },
+    {
+      "id": "T6",
+      "title": "롤플레이 채팅 리팩토링",
+      "agent": "frontend",
+      "priority": "P0",
+      "dependencies": ["T1", "T3", "T4", "T5"],
+      "acceptanceCriteria": [
+        "ScenarioClient.tsx → GAD-7 Quick Check 연동 (1~10 슬라이더 대체)",
+        "NPC opening_line으로 AI 첫 메시지 자동 표시",
+        "대화 종료 시 messages 테이블에 개별 저장 (turns_json 대체)",
+        "세션 메모리 AI 브리핑 카드 표시 (시작 전)",
+        "최대 턴 수 도달 시 자동 종료",
+        "locale별 시나리오 필터링"
+      ]
+    },
+    {
+      "id": "T7",
+      "title": "랜딩 페이지 + 시나리오 목록 i18n",
+      "agent": "frontend",
+      "priority": "P1",
+      "dependencies": ["T3"],
+      "acceptanceCriteria": [
+        "랜딩 페이지 한국어/영어 전환",
+        "시나리오 목록 locale 필터 (KO 유저 → KO 시나리오만)",
+        "카테고리 라벨 i18n",
+        "가격 표시 locale 기반 (₩12,900 / $9.99)"
+      ]
+    },
+    {
+      "id": "T8",
+      "title": "대시보드 리팩토링",
+      "agent": "frontend",
+      "priority": "P1",
+      "dependencies": ["T1", "T3", "T4"],
+      "acceptanceCriteria": [
+        "sessions 테이블 기반 최근 기록 표시 (scenario_sessions 대체)",
+        "GAD-7 주간 트렌드 그래프 (gad7_scores 기반)",
+        "주간 Full GAD-7 팝업 (마지막 측정 7일 이상 경과 시)",
+        "세션 메모리 요약 표시",
+        "i18n 적용"
+      ]
+    },
+    {
+      "id": "T9",
+      "title": "Apple OAuth 추가",
+      "agent": "backend",
+      "priority": "P1",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Supabase Auth Apple provider 설정",
+        "로그인 UI에 Apple 버튼 추가",
+        "Google + Apple 동시 지원"
+      ]
+    },
+    {
+      "id": "T10",
+      "title": "멀티커런시 Stripe 설정",
+      "agent": "backend",
+      "priority": "P1",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "KRW ₩12,900 Price ID",
+        "USD $9.99 Price ID",
+        "checkout API에서 locale 기반 자동 통화 선택",
+        "웹훅에서 currency 저장"
+      ]
+    },
+    {
+      "id": "T11",
+      "title": "세션 결과 페이지 리팩토링",
+      "agent": "frontend",
+      "priority": "P1",
+      "dependencies": ["T4", "T5", "T6"],
+      "acceptanceCriteria": [
+        "GAD-7 전후 비교 시각화",
+        "AI 피드백 표시 (세션 메모리 기반)",
+        "레벨업/배지 팝업 애니메이션",
+        "다음 추천 시나리오 제안"
+      ]
+    },
+    {
+      "id": "T12",
+      "title": "타입 정리 + 테스트 빌드",
+      "agent": "qa",
+      "priority": "P2",
+      "dependencies": ["T6", "T7", "T8"],
+      "acceptanceCriteria": [
+        "any 타입 전부 제거",
+        "pnpm build 성공",
+        "pnpm typecheck 에러 0",
+        "주요 페이지 수동 스모크 테스트"
+      ]
+    }
+  ]
+}

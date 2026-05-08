@@ -1,0 +1,38 @@
+{
+  "session_id": "MicroSaaS_Evaluation_20260502",
+  "topic": "솔로 B2C 마이크로SaaS 아이디어 TOP3 선정 - 시장규모/경쟁/수익성/빌드난이도 종합평가",
+  "created_at": "2026-05-02T22:40:00Z",
+  "updated_at": "2026-05-02T22:40:00Z",
+  "status": "COMPLETED",
+  "current_phase": 7,
+  "requirements": {
+    "focus": ["market_size", "competition", "revenue_potential", "build_difficulty"],
+    "output_format": "comprehensive_report",
+    "scope": {"timeframe": "2025-2026", "geography": "Korea + Global"},
+    "sources": {"required_types": ["industry_reports", "news", "community"], "min_quality": "C"},
+    "audience": "solo_founder",
+    "special_requirements": ["TOP3 selection with evidence", "competitor mapping"]
+  },
+  "plan": {
+    "subtopics": [
+      "mental_health_wellness_app_market_2026",
+      "social_anxiety_voice_ai_therapy_competitive_landscape",
+      "dating_meta_apps_ai_assistant_market",
+      "mbti_personality_coaching_apps_korea_global",
+      "adhd_productivity_focus_tools_market",
+      "burnout_recovery_market_b2b_b2c"
+    ]
+  },
+  "progress": {
+    "phase_1": "completed",
+    "phase_2": "completed",
+    "phase_3": "in_progress",
+    "phase_4": "pending",
+    "phase_5": "pending",
+    "phase_6": "pending",
+    "phase_7": "pending"
+  },
+  "sources_count": 0,
+  "artifacts": {},
+  "errors": []
+}

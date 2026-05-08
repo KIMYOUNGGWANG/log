@@ -1,0 +1,71 @@
+{
+  "project": "Social Anxiety Exposure RPG",
+  "phase": "1 (MVP)",
+  "goals": [
+    "Verify first payment with text-based roleplay and anxiety reduction loop.",
+    "Launch on Vercel with real Supabase DB and Stripe integration."
+  ],
+  "api_contracts": [
+    {
+      "name": "POST /api/chat",
+      "description": "Handles GPT-4o NPC responses based on scenario and user input.",
+      "request": "{ sessionId: string, message: string }",
+      "response": "{ reply: string, isFinished: boolean }"
+    },
+    {
+      "name": "POST /api/payment",
+      "description": "Stripe webhook handler for subscription status updates.",
+      "request": "Stripe Event",
+      "response": "{ received: true }"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Project Initialization",
+      "description": "Setup Next.js 15, Tailwind v4, Shadcn UI, pnpm.",
+      "priority": "P0"
+    },
+    {
+      "id": "T2",
+      "title": "Database & Authentication",
+      "description": "Setup Supabase schemas (User, Scenario, ScenarioSession, UserProgress, etc.) and Social Login (Kakao, Google).",
+      "priority": "P0"
+    },
+    {
+      "id": "T3",
+      "title": "Scenario Navigation & Free Tier",
+      "description": "Create Scenario list page. Implement locking for premium scenarios and unlocking for 5 free scenarios.",
+      "priority": "P1"
+    },
+    {
+      "id": "T4",
+      "title": "Roleplay Chat Interface & GPT-4o Integration",
+      "description": "Build chat UI and integrate Server Action for GPT-4o NPC responses with max_tokens limit.",
+      "priority": "P1"
+    },
+    {
+      "id": "T5",
+      "title": "Anxiety Measurement & Weekly Graph",
+      "description": "Pre/Post session 1-10 slider and user dashboard with weekly progress chart.",
+      "priority": "P1"
+    },
+    {
+      "id": "T6",
+      "title": "Gamification (Levels & Badges)",
+      "description": "Implement level 1-3 tracking and 5 badge unlocks upon completing scenarios.",
+      "priority": "P2"
+    },
+    {
+      "id": "T7",
+      "title": "Subscription System",
+      "description": "Integrate Stripe ₩12,900/month checkout and update User Subscription status.",
+      "priority": "P1"
+    }
+  ],
+  "reviews": {
+    "completeness": "Passed. All Phase 1 requirements from 03_PHASES.md are mapped.",
+    "meta": "Passed. Review methodology followed accurately.",
+    "simplicity": "Passed. No audio, no complex multiplayer, sticking to MVP strictly."
+  }
+}

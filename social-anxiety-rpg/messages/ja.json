@@ -1,0 +1,11 @@
+{
+  "Navigation": {
+    "dashboard": "ダッシュボード",
+    "scenarios": "シナリオ",
+    "challenge": "グループチャレンジ"
+  },
+  "Dashboard": {
+    "title": "ダッシュボード",
+    "description": "あなたの克服進捗と獲得したバッジを確認してください。"
+  }
+}

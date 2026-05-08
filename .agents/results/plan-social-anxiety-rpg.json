@@ -1,0 +1,61 @@
+{
+  "project": "Social Anxiety RPG - Phase 1",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Database Schema & Auth Setup",
+      "agent": "backend",
+      "priority": "P0",
+      "dependencies": [],
+      "description": "Set up Supabase tables (User, Scenario, ScenarioSession, UserProgress, Badge, Subscription) and configure Kakao/Google OAuth."
+    },
+    {
+      "id": "T2",
+      "title": "App Shell & UI Foundation",
+      "agent": "frontend",
+      "priority": "P0",
+      "dependencies": [],
+      "description": "Initialize Shadcn UI components, set up the Next.js root layout, navigation bar, and basic routing structure for Phase 1."
+    },
+    {
+      "id": "T3",
+      "title": "AI Roleplay API",
+      "agent": "backend",
+      "priority": "P1",
+      "dependencies": ["T1"],
+      "description": "Implement the GPT-4o server route (`api/chat/route.ts`) or Server Action for NPC interactions based on system prompts."
+    },
+    {
+      "id": "T4",
+      "title": "Scenario & Chat UI",
+      "agent": "frontend",
+      "priority": "P1",
+      "dependencies": ["T2", "T3"],
+      "description": "Build the Scenario selection cards, Pre/Post Anxiety Slider UI, and the Real-time Chat Interface."
+    },
+    {
+      "id": "T5",
+      "title": "Progress & Gamification API",
+      "agent": "backend",
+      "priority": "P2",
+      "dependencies": ["T1", "T4"],
+      "description": "Implement logic to calculate session scores, update UserProgress, and unlock Badges."
+    },
+    {
+      "id": "T6",
+      "title": "Dashboard UI",
+      "agent": "frontend",
+      "priority": "P2",
+      "dependencies": ["T2", "T5"],
+      "description": "Build the Dashboard page displaying weekly anxiety graphs, current level, and unlocked badges."
+    },
+    {
+      "id": "T7",
+      "title": "Subscription & Payments",
+      "agent": "frontend",
+      "priority": "P2",
+      "dependencies": ["T2", "T4"],
+      "description": "Integrate Toss Payments UI widget and implement the Paywall for premium scenarios."
+    }
+  ]
+}

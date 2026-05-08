@@ -1,0 +1,43 @@
+{
+  "session": "phase2-final-sprint",
+  "tasks": [
+    {
+      "id": "T1",
+      "agent": "backend",
+      "title": "Lv.4-5 고급 시나리오 Seed SQL",
+      "description": "발표실, 직장상사 갈등, 대중 앞 발언, 전화 민원 응대, 모임 자기소개 등 고급 시나리오 10개를 scenarios 테이블에 INSERT. pack_id로 회식/면접 팩과 연결.",
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "T2",
+      "agent": "backend",
+      "title": "음성 배지 '목소리의 용기' 자동 부여",
+      "description": "badges 테이블에 '목소리의 용기' 배지 seed. voice_sessions에 INSERT 트리거 또는 /api/voice-session에서 첫 음성 세션 완료 시 user_badges에 자동 부여.",
+      "priority": "P0",
+      "dependencies": []
+    },
+    {
+      "id": "T3",
+      "agent": "backend",
+      "title": "Web Push 구독 API + Service Worker",
+      "description": "web-push npm 패키지 설치. /api/push-subscribe (POST: 구독 저장), /api/push-send (CRON: 매일 알림 전송). push_subscriptions 테이블 생성. public/sw.js 서비스 워커.",
+      "priority": "P1",
+      "dependencies": []
+    },
+    {
+      "id": "T4",
+      "agent": "frontend",
+      "title": "Push 알림 등록 UI + 대시보드 배지 표시",
+      "description": "대시보드에 '알림 켜기' 토글 버튼. 배지 목록에 '목소리의 용기' 조건부 표시. Notification.requestPermission() 플로우.",
+      "priority": "P1",
+      "dependencies": ["T2", "T3"]
+    }
+  ],
+  "assumptions": [
+    "VAPID keys will be stored in env vars (NEXT_PUBLIC_VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY)",
+    "Cron trigger for daily push will use Vercel Cron or external scheduler",
+    "Badge seed uses existing badges table schema from Phase 1"
+  ],
+  "over_engineering_review": "No new frameworks. web-push is the standard minimal library. No custom notification UI — browser native only."
+}
