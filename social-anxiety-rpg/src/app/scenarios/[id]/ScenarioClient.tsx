@@ -133,7 +133,7 @@ export default function ScenarioClient({
           content: m.parts?.filter((p: unknown) => (p as { type: string }).type === "text").map((p: unknown) => (p as { text: string }).text).join("\n") || "",
         }));
 
-        await saveSessionV2({
+        const result = await saveSessionV2({
           scenarioId: scenario.id,
           preAnxiety: preScore,
           postAnxiety: score,
@@ -142,11 +142,13 @@ export default function ScenarioClient({
           messages: chatMessages,
           mode: practiceMode,
         });
+        router.push(`/scenarios/${scenario.id}/result?sessionId=${result.sessionId}`);
+        return;
       } catch (e) {
         console.error(e);
       }
     }
-    router.push("/dashboard");
+    router.push(`/scenarios/${scenario.id}/result`);
   };
 
   const handleVoiceCallEnd = async () => {
